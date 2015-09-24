@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kevoree-dotnet-model-generator", "kevoree-dotnet-model-generator.csproj", "{B3936215-BADF-4DB5-9DA1-5B735F5ED40F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "..\kevoree-dotnet-core-api\Api.csproj", "{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Annotation", "..\kevoree-dotnet-annotation\Annotation.csproj", "{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kevoree-dotnet-model-generator", "kevoree-dotnet-model-generator.csproj", "{76025347-E823-4D3E-A31F-126050A586DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B3936215-BADF-4DB5-9DA1-5B735F5ED40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3936215-BADF-4DB5-9DA1-5B735F5ED40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3936215-BADF-4DB5-9DA1-5B735F5ED40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3936215-BADF-4DB5-9DA1-5B735F5ED40F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD3C2F49-5C3B-46D3-A283-600FE11A0AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76025347-E823-4D3E-A31F-126050A586DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76025347-E823-4D3E-A31F-126050A586DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76025347-E823-4D3E-A31F-126050A586DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76025347-E823-4D3E-A31F-126050A586DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
