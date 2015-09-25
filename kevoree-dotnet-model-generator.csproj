@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B3936215-BADF-4DB5-9DA1-5B735F5ED40F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>kevoreedotnetmodelgenerator2</RootNamespace>
     <AssemblyName>kevoree-dotnet-model-generator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -128,7 +128,6 @@
     <Reference Include="System.Reflection.Context" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComponentLoader.cs" />
     <Compile Include="DirectoryNameManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelGeneratorTest.cs" />
@@ -147,6 +146,10 @@
     <ProjectReference Include="..\kevoree-dotnet-core-api\Api.csproj">
       <Project>{ad3c2f49-5c3b-46d3-a283-600fe11a0aa2}</Project>
       <Name>Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\kevoree-dotnet-nuget-loader\kevoree-dotnet-nuget-loader.csproj">
+      <Project>{f30aecdb-2e1b-404d-b51c-12edc2d6398c}</Project>
+      <Name>kevoree-dotnet-nuget-loader</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

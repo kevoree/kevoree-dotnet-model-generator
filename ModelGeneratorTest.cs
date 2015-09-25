@@ -14,8 +14,8 @@ namespace Org.Kevoree.ModelGenerator.Test
 		[Test]
 		public void TestComponent()
 		{
-            var res = new ModelGenerator().Analyze("org-kevoree-yield-version", "7.0.0");
-			Console.Write (res.ToString ());
+            //var res = new ModelGenerator().Analyze("org-kevoree-yield-version", "7.0.0");
+			//Console.Write (res.ToString ());
 		}
 
 		[Test]
