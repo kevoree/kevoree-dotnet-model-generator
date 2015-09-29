@@ -1,7 +1,6 @@
 ﻿using Org.Kevoree.Annotation;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
@@ -13,6 +12,7 @@ using Org.Kevoree.Log;
 using System.Text.RegularExpressions;
 using Org.Kevoree.Registry.Client;
 using System.Reflection;
+using Org.Kevoree.Library.Annotation;
 
 namespace Org.Kevoree.ModelGenerator
 {
@@ -21,6 +21,7 @@ namespace Org.Kevoree.ModelGenerator
         private DirectoryCatalog directoryCatalog;
         private IEnumerable<Org.Kevoree.Annotation.DeployUnit> exports;
         private CompositionContainer container;
+        private readonly AnnotationHelper annotationHelper = new AnnotationHelper();
 
         private Log.Log log = LogFactory.getLog(typeof(Runner).ToString(), Level.DEBUG);
 
@@ -54,42 +55,6 @@ namespace Org.Kevoree.ModelGenerator
             exports = container.GetExportedValues<Org.Kevoree.Annotation.DeployUnit>();
         }
 
-        static List<Tuple<Type, object>> filterByTypes(object[] types, Type[] pars)
-        {
-            var gootypes = new List<Tuple<Type, object>>();
-            foreach (object type in types)
-            {
-                foreach (var par in pars)
-                {
-                    if (type.GetType().Equals(par))
-                    {
-                        gootypes.Add(Tuple.Create(par, type));
-                    }
-                }
-            }
-            return gootypes;
-        }
-
-        static List<Tuple<Type, object>> GetTypeDefinitionSub(Type t, Type[] types)
-        {
-            return filterByTypes(t.GetCustomAttributes(true), types);
-        }
-
-        private Type GetTypeDefinition(Type filteredAssemblyTypes, Type[] expectedTypes)
-        {
-            return GetTypeDefinitionSub(filteredAssemblyTypes, expectedTypes)[0].Item1;
-        }
-
-        static bool FilterByAttribute(Type t, Type[] types)
-        {
-            return GetTypeDefinitionSub(t, types).Count > 0;
-        }
-
-        public List<Org.Kevoree.Annotation.DeployUnit> ListDeployUnits()
-        {
-            return exports.ToList();
-        }
-
         internal void AnalyseAndPublish(string packageName, string packageVersion, string kevoreeRegistryUrl)
         {
             this.Init();
@@ -101,12 +66,11 @@ namespace Org.Kevoree.ModelGenerator
 
         private ContainerRoot Analyse(string packageName, string packageVersion)
         {
-            var assemblyTypes = this.ListDeployUnits();
             KevoreeFactory kevoreeFactory = new DefaultKevoreeFactory();
             ContainerRoot containerRoot = kevoreeFactory.createContainerRoot();
             kevoreeFactory.root(containerRoot);
 
-            var filteredAssemblyTypes = assemblyTypes.Where((x) => FilterByAttribute(x.GetType(), EXPECTED_TYPES)).ToList();
+            var filteredAssemblyTypes = exports.Where((x) => annotationHelper.FilterByAttribute(x.GetType(), EXPECTED_TYPES)).ToList();
             if (filteredAssemblyTypes.Count() == 0)
             {
                 log.Error("None of the expected types have been found (Component, Channel, Node, Group)");
@@ -196,10 +160,10 @@ namespace Org.Kevoree.ModelGenerator
             {
                 PortTypeRef providedPortRef = factory.createPortTypeRef();
                 providedPortRef.setName(methodInfo.Name);
-                
+
                 var optional = ((Input)methodInfo.GetCustomAttribute(typeof(Input))).Optional ? java.lang.Boolean.TRUE : java.lang.Boolean.FALSE;
                 providedPortRef.setOptional(optional);
-                
+
                 type.addProvided(providedPortRef);
             }
         }
@@ -341,7 +305,7 @@ namespace Org.Kevoree.ModelGenerator
 
             org.kevoree.DeployUnit du = kevoreeFactory.createDeployUnit();
             var platform = kevoreeFactory.createValue();
-            platform.setName("platform");
+            platform.setName("plateform");
             platform.setValue("dotnet");
             du.addFilters(platform);
 
@@ -350,7 +314,7 @@ namespace Org.Kevoree.ModelGenerator
             du.setName(packageName);
             du.setVersion(packageVersion);
 
-            var typeDefinitionType = GetTypeDefinition(typedefinedObject.GetType(), EXPECTED_TYPES);
+            var typeDefinitionType = annotationHelper.GetTypeDefinition(typedefinedObject.GetType(), EXPECTED_TYPES);
 
             /* chargement des informations génériques à toutes les type defition */
             var typeDef = initTypeDefAndPackage(typedefinedObject.GetType().FullName, du, containerRoot, kevoreeFactory, getModelTypeName(typeDefinitionType));

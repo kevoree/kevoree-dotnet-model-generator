@@ -1,10 +1,5 @@
 ﻿using CommandLine;
 using CommandLine.Text;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Org.Kevoree.ModelGenerator
 {
@@ -13,7 +8,7 @@ namespace Org.Kevoree.ModelGenerator
         [Option("package.name", Required = true, HelpText = "Nuget package name.")]
         public string PackageName { get; set; }
 
-        [Option("package.version", Required=true, HelpText = "Nuget package version (format = X.Y.Z).")]
+        [Option("package.version", Required = true, HelpText = "Nuget package version (format = X.Y.Z).")]
         public string PackageVersion { get; set; }
 
         [Option("nuget.local.repository.path", Required = false, HelpText = "Nuget local repository.")]

@@ -1,30 +1,24 @@
 ﻿using System;
-using System.Reflection;
-using Org.Kevoree.Annotation;
-using System.Collections.Generic;
-using System.Linq;
-using Org.Kevoree.Log;
-using org.kevoree;
-using org.kevoree.factory;
-using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Org.Kevoree.ModelGenerator
 {
-	public class ModelGenerator
-	{
-		private static void Main(string[] args) {
+    public class ModelGenerator
+    {
+        private static void Main(string[] args)
+        {
 
             var options = new CommandLineOptions();
-            
-            if (CommandLine.Parser.Default.ParseArguments(args, options)) { 
-                
+
+            if (CommandLine.Parser.Default.ParseArguments(args, options))
+            {
+
                 /*
                  * Since it's the only "business" validation needed we keep it simple
-                 */ 
+                 */
                 if (!new Regex("^\\d+\\.\\d+\\.\\d+$").IsMatch(options.PackageVersion))
                 {
-                        
+
                     Console.WriteLine(options.GetUsage());
                 }
                 else
@@ -33,6 +27,6 @@ namespace Org.Kevoree.ModelGenerator
                     componentloaded.AnalyseAndPublish(options.PackageName, options.PackageVersion, options.KevoreeRegistryUrl);
                 }
             }
-		}
-	}
+        }
+    }
 }
