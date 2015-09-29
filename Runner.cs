@@ -1,18 +1,18 @@
-﻿using Org.Kevoree.Annotation;
+﻿using org.kevoree;
+using org.kevoree.factory;
+using Org.Kevoree.Annotation;
+using Org.Kevoree.Core.Api;
+using Org.Kevoree.Library.Annotation;
+using Org.Kevoree.Log;
+using Org.Kevoree.Registry.Client;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Registration;
-using Org.Kevoree.Core.Api;
-using org.kevoree.factory;
-using org.kevoree;
-using Org.Kevoree.Log;
-using System.Text.RegularExpressions;
-using Org.Kevoree.Registry.Client;
+using System.Linq;
 using System.Reflection;
-using Org.Kevoree.Library.Annotation;
+using System.Text.RegularExpressions;
 
 namespace Org.Kevoree.ModelGenerator
 {
@@ -155,7 +155,7 @@ namespace Org.Kevoree.ModelGenerator
 
         private void CompleteComponentTypeDefinitionInput(Annotation.DeployUnit component, org.kevoree.impl.ComponentTypeImpl type, KevoreeFactory factory)
         {
-            var lstMethodsInfos = filterMethodsByAttribute(component, typeof(Input));
+            var lstMethodsInfos = this.annotationHelper.filterMethodsByAttribute(component.GetType(), typeof(Input));
             foreach (MethodInfo methodInfo in lstMethodsInfos)
             {
                 PortTypeRef providedPortRef = factory.createPortTypeRef();
@@ -168,9 +168,9 @@ namespace Org.Kevoree.ModelGenerator
             }
         }
 
-        private static void CompleteComponentTypeDefinitionOutputs(Annotation.DeployUnit component, org.kevoree.impl.ComponentTypeImpl type, KevoreeFactory factory)
+        private void CompleteComponentTypeDefinitionOutputs(Annotation.DeployUnit component, org.kevoree.impl.ComponentTypeImpl type, KevoreeFactory factory)
         {
-            var lstOutputFields = filterFieldsByAttribute(component, typeof(Output));
+            var lstOutputFields = annotationHelper.filterFieldsByAttribute(component.GetType(), typeof(Output));
             foreach (FieldInfo fieldInfo in lstOutputFields)
             {
                 PortTypeRef requiredPortRef = CompleteComponentTypeDefinitionOutput(component, factory, fieldInfo);
@@ -191,9 +191,9 @@ namespace Org.Kevoree.ModelGenerator
             return requiredPortRef;
         }
 
-        private static void CompleteComponentTypeDefinitionParams(Annotation.DeployUnit component, org.kevoree.TypeDefinition type, KevoreeFactory factory)
+        private void CompleteComponentTypeDefinitionParams(Annotation.DeployUnit component, org.kevoree.TypeDefinition type, KevoreeFactory factory)
         {
-            var lstOutputFields = filterFieldsByAttribute(component, typeof(Param));
+            var lstOutputFields = this.annotationHelper.filterFieldsByAttribute(component.GetType(), typeof(Param));
             foreach (FieldInfo fieldInfo in lstOutputFields)
             {
                 DictionaryAttribute dicAtt = CompleteComponentTypeDefinitionParamField(type, factory, fieldInfo);
@@ -287,15 +287,7 @@ namespace Org.Kevoree.ModelGenerator
             return dataType;
         }
 
-        private static IEnumerable<FieldInfo> filterFieldsByAttribute(Annotation.DeployUnit component, Type typeOutput)
-        {
-            return component.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(x => x.GetCustomAttribute(typeOutput) != null);
-        }
-
-        private IEnumerable<MethodInfo> filterMethodsByAttribute(Annotation.DeployUnit component, Type type)
-        {
-            return component.GetType().GetMethods().Where(x => x.GetCustomAttribute(type) != null);
-        }
+        
 
         private TypeDefinition GenericComponentDefinition(string packageName, string packageVersion, KevoreeFactory kevoreeFactory, ContainerRoot containerRoot, Annotation.DeployUnit typedefinedObject)
         {
