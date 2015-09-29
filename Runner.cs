@@ -147,6 +147,16 @@ namespace Org.Kevoree.ModelGenerator
                     log.Debug("Group type");
                     CompleteGroupTypeDefinition(typedefinedObject, (org.kevoree.impl.GroupTypeImpl)typeDefinitionType, kevoreeFactory, containerRoot);
                 }
+
+                if (typeDefinitionType.getDictionaryType() == null)
+                {
+                    typeDefinitionType.setDictionaryType(kevoreeFactory.createDictionaryType());
+                }
+
+                if (typeDefinitionType.getDictionaryType().getAttributes() == null)
+                {
+                    typeDefinitionType.getDictionaryType().setAttributes(new java.util.ArrayList());
+                }
             }
             else
             {
@@ -331,7 +341,7 @@ namespace Org.Kevoree.ModelGenerator
 
             org.kevoree.DeployUnit du = kevoreeFactory.createDeployUnit();
             var platform = kevoreeFactory.createValue();
-            platform.setName("plateform");
+            platform.setName("platform");
             platform.setValue("dotnet");
             du.addFilters(platform);
 
@@ -364,7 +374,7 @@ namespace Org.Kevoree.ModelGenerator
                     pack = root.findPackagesByID(packages[i]);
                     if (pack == null)
                     {
-                        pack = (org.kevoree.Package)factory.createPackage().withName(packages[i]);
+                        pack = (org.kevoree.Package)factory.createPackage().withName(packages[i].ToLower());
                         root.addPackages(pack);
                     }
                 }
@@ -373,7 +383,7 @@ namespace Org.Kevoree.ModelGenerator
                     Package packNew = pack.findPackagesByID(packages[i]);
                     if (packNew == null)
                     {
-                        packNew = (org.kevoree.Package)factory.createPackage().withName(packages[i]);
+                        packNew = (org.kevoree.Package)factory.createPackage().withName(packages[i].ToLower());
                         pack.addPackages(packNew);
                     }
                     pack = packNew;

@@ -6,11 +6,8 @@ using System.Linq;
 using Org.Kevoree.Log;
 using org.kevoree;
 using org.kevoree.factory;
-using Mono.Options;
 using System.IO;
 using System.Text.RegularExpressions;
-
-
 
 namespace Org.Kevoree.ModelGenerator
 {
@@ -18,68 +15,27 @@ namespace Org.Kevoree.ModelGenerator
 	{
 		private static void Main(string[] args) {
 
-            string packageName = null;
-            string packageVersion = null;
-            bool bShowHelp = false;
-            string nugetRepositoryPath = "";
-            string remoteRepositoryPath = "https://packages.nuget.org/api/v2";
-            string kevoreeRegistryUrl = "http://registry.kevoree.org";
-
-            var optionSet = new OptionSet()
-            {
-                { "package.name=", "the nuget package name", n => packageName = n },
-                { "package.version=", "init script path", p => packageVersion = p },
-                { "nuget.localRepository.path", "nuget local repository path", pa => nugetRepositoryPath = pa  },
-                { "nuget.repository.url", "nuget remote repository url", rr => remoteRepositoryPath = rr  },
-                { "kevoree.registry.url", "kevoree registry url", kr => kevoreeRegistryUrl = kr  },
-                { "h|help=", "displays help message", v => bShowHelp = true }
-            };
-
-            try
-            {
-                optionSet.Parse(args);
-                if (bShowHelp)
+            var options = new CommandLineOptions();
+            
+            if (CommandLine.Parser.Default.ParseArguments(args, options)) { 
+                
+                if (!new Regex("^\\d+\\.\\d+\\.\\d+$").IsMatch(options.PackageVersion))
                 {
-                    showHelp(optionSet);
+                        
+                    Console.WriteLine(options.GetUsage());
                 }
                 else
                 {
-                    if (packageName == null) {
-                        throw new OptionException("Package name is required.", "package.name");
-                    }
 
-                    if(packageVersion == null || !new Regex("^\\d+\\.\\d+\\.\\d+$").IsMatch(packageVersion)) {
-                        throw new OptionException("Package version is required (and should formated like X.Y.Z).", "package.version");
-                    }
-
-                    if (nugetRepositoryPath == null)
+                    if (options.NugetLocalRepositoryPath == null || options.NugetLocalRepositoryPath == "")
                     {
-                        nugetRepositoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                        Directory.CreateDirectory(nugetRepositoryPath);
+                        options.NugetLocalRepositoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                        Directory.CreateDirectory(options.NugetLocalRepositoryPath);
                     }
-                    var componentloaded = new NugetLoader.NugetLoader(nugetRepositoryPath).LoadRunnerFromPackage<Runner>(packageName, packageVersion, remoteRepositoryPath);
-                    componentloaded.AnalyseAndPublish(packageName, packageVersion, kevoreeRegistryUrl);
-
+                    var componentloaded = new NugetLoader.NugetLoader(options.NugetLocalRepositoryPath).LoadRunnerFromPackage<Runner>(options.PackageName, options.PackageVersion, options.NugetRepositoryUrl);
+                    componentloaded.AnalyseAndPublish(options.PackageName, options.PackageVersion, options.KevoreeRegistryUrl);
                 }
             }
-            catch (OptionException e)
-            {
-                showError(e);
-            }
 		}
-
-        private static void showError(OptionException e)
-        {
-            Console.Write("kevoree-dotnet-model-generator: ");
-            Console.WriteLine(e.Message);
-            Console.WriteLine("Try `kevoree-dotnet-model-generator --help' for more information.");
-        }
-
-        private static void showHelp(OptionSet optionSet)
-        {
-            Console.WriteLine("Usage: kevoree-dotnet [OPTIONS]+");
-            Console.WriteLine("Options:");
-            optionSet.WriteOptionDescriptions(Console.Out);
-        }
 	}
 }

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B3936215-BADF-4DB5-9DA1-5B735F5ED40F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>kevoreedotnetmodelgenerator2</RootNamespace>
+    <RootNamespace>Org.Kevoree.ModelGenerator</RootNamespace>
     <AssemblyName>kevoree-dotnet-model-generator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ProductVersion>8.0.30703</ProductVersion>
@@ -30,6 +30,10 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <HintPath>packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="IKVM.AWT.WinForms, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.AWT.WinForms.dll</HintPath>
       <Private>True</Private>
@@ -163,7 +167,7 @@
     <Reference Include="System.Reflection.Context" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mono.Options\Options.cs" />
+    <Compile Include="CommandLineOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModelGeneratorTest.cs" />
     <Compile Include="ModelGenerator.cs" />
