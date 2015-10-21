@@ -60,8 +60,20 @@ namespace Org.Kevoree.ModelGenerator
             this.Init();
 
             var result = Analyse(packageName, packageVersion);
+            
+            debug(result);
+
             new RegistryClient(kevoreeRegistryUrl).publishContainerRoot(result).Wait();
 
+        }
+
+        private static void debug(ContainerRoot result)
+        {
+            var fact = new DefaultKevoreeFactory();
+            var serializer = fact.createJSONSerializer();
+            var modelStr = serializer.serialize(result);
+
+            Console.WriteLine(modelStr);
         }
 
         private ContainerRoot Analyse(string packageName, string packageVersion)
@@ -297,7 +309,7 @@ namespace Org.Kevoree.ModelGenerator
 
             org.kevoree.DeployUnit du = kevoreeFactory.createDeployUnit();
             var platform = kevoreeFactory.createValue();
-            platform.setName("plateform");
+            platform.setName("platform");
             platform.setValue("dotnet");
             du.addFilters(platform);
 
