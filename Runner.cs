@@ -2,6 +2,7 @@
 using org.kevoree.factory;
 using Org.Kevoree.Annotation;
 using Org.Kevoree.Core.Api;
+using Org.Kevoree.Core.Api.IMarshalled;
 using Org.Kevoree.Library.Annotation;
 using Org.Kevoree.Log;
 using Org.Kevoree.Registry.Client;
@@ -402,5 +403,10 @@ namespace Org.Kevoree.ModelGenerator
         }
 
         private string pluginPath;
+
+        public bool updateDictionary(IDictionaryAttributeMarshalled attribute, IValueMarshalled value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
