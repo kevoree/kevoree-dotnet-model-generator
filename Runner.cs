@@ -5,6 +5,7 @@ using Org.Kevoree.Core.Api;
 using Org.Kevoree.Core.Api.IMarshalled;
 using Org.Kevoree.Library.Annotation;
 using Org.Kevoree.Log;
+using Org.Kevoree.Log.Api;
 using Org.Kevoree.Registry.Client;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Org.Kevoree.ModelGenerator
         private CompositionContainer container;
         private readonly AnnotationHelper annotationHelper = new AnnotationHelper();
 
-        private Log.Log log = LogFactory.getLog(typeof(Runner).ToString(), Level.DEBUG);
+        private ILogger log = new LoggerMaster(Log.Api.Level.Debug, "ModelGenerator");
 
         private readonly Type[] EXPECTED_TYPES = {
 			typeof(Org.Kevoree.Annotation.ComponentType),
@@ -61,10 +62,17 @@ namespace Org.Kevoree.ModelGenerator
             this.Init();
 
             var result = Analyse(typeDefName, typeDefVersion, typeDefPackage, packageName, packageVersion);
-            
-            debug(result);
 
-            new RegistryClient(kevoreeRegistryUrl).publishContainerRoot(result).Wait();
+            if (result != null)
+            {
+                debug(result);
+
+                new RegistryClient(kevoreeRegistryUrl).publishContainerRoot(result).Wait();
+            }
+            else
+            {
+                log.Error("Malformed project");
+            }
 
         }
 
@@ -80,8 +88,8 @@ namespace Org.Kevoree.ModelGenerator
         private ContainerRoot Analyse(string typeDefName, string typeDefVersion, string typeDefPackage, string packageName, string packageVersion)
         {
             KevoreeFactory kevoreeFactory = new DefaultKevoreeFactory();
-            ContainerRoot containerRoot = kevoreeFactory.createContainerRoot();
-            kevoreeFactory.root(containerRoot);
+            ContainerRoot containerRoot = null;
+            
 
             var filteredAssemblyTypes = exports.Where((x) => annotationHelper.FilterByAttribute(x.GetType(), EXPECTED_TYPES)).ToList();
             if (filteredAssemblyTypes.Count() == 0)
@@ -90,6 +98,8 @@ namespace Org.Kevoree.ModelGenerator
             }
             else if (filteredAssemblyTypes.Count() == 1)
             {
+                containerRoot = kevoreeFactory.createContainerRoot();
+                kevoreeFactory.root(containerRoot);
                 // A type found (nominal)
                 /*
                  * Initialisation a type definition (container root) with information common to all the components types.

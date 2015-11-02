@@ -16,7 +16,13 @@ namespace Org.Kevoree.ModelGenerator
                  * Since it's the only "business" validation needed we keep it simple
                  */
                 var componentloaded = new NugetLoader.NugetLoader(options.NugetLocalRepositoryPath).LoadRunnerFromPackage<Runner>(options.PackageName, options.PackageVersion, options.NugetRepositoryUrl);
-                componentloaded.AnalyseAndPublish(options.TypeDefName, options.TypeDefVersion, options.TypeDefPackage, options.PackageName, options.PackageVersion, options.KevoreeRegistryUrl);
+                if (componentloaded != null)
+                {
+                    componentloaded.AnalyseAndPublish(options.TypeDefName, options.TypeDefVersion, options.TypeDefPackage, options.PackageName, options.PackageVersion, options.KevoreeRegistryUrl);
+                }
+                else {
+                    Console.WriteLine(options.PackageName + ":" + options.PackageVersion + " failed to load.");
+                }
             }
         }
     }
