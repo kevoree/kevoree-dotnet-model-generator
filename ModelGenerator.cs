@@ -24,7 +24,7 @@ namespace Org.Kevoree.ModelGenerator
                 else
                 {
                     var componentloaded = new NugetLoader.NugetLoader(options.NugetLocalRepositoryPath).LoadRunnerFromPackage<Runner>(options.PackageName, options.PackageVersion, options.NugetRepositoryUrl);
-                    componentloaded.AnalyseAndPublish(options.PackageName, options.PackageVersion, options.KevoreeRegistryUrl);
+                    componentloaded.AnalyseAndPublish(options.TypeDefName, options.TypeDefVersion, options.TypeDefPackage, options.PackageName, options.PackageVersion, options.KevoreeRegistryUrl);
                 }
             }
         }

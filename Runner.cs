@@ -56,11 +56,11 @@ namespace Org.Kevoree.ModelGenerator
             exports = container.GetExportedValues<Org.Kevoree.Annotation.DeployUnit>();
         }
 
-        internal void AnalyseAndPublish(string packageName, string packageVersion, string kevoreeRegistryUrl)
+        internal void AnalyseAndPublish(string typeDefName, string typeDefVersion, string typeDefPackage, string packageName, string packageVersion, string kevoreeRegistryUrl)
         {
             this.Init();
 
-            var result = Analyse(packageName, packageVersion);
+            var result = Analyse(typeDefName, typeDefVersion, typeDefPackage, packageName, packageVersion);
             
             debug(result);
 
@@ -77,7 +77,7 @@ namespace Org.Kevoree.ModelGenerator
             Console.WriteLine(modelStr);
         }
 
-        private ContainerRoot Analyse(string packageName, string packageVersion)
+        private ContainerRoot Analyse(string typeDefName, string typeDefVersion, string typeDefPackage, string packageName, string packageVersion)
         {
             KevoreeFactory kevoreeFactory = new DefaultKevoreeFactory();
             ContainerRoot containerRoot = kevoreeFactory.createContainerRoot();
@@ -95,7 +95,7 @@ namespace Org.Kevoree.ModelGenerator
                  * Initialisation a type definition (container root) with information common to all the components types.
                  */
                 var typedefinedObject = filteredAssemblyTypes[0];
-                TypeDefinition typeDefinitionType = GenericComponentDefinition(packageName, packageVersion, kevoreeFactory, containerRoot, typedefinedObject);
+                TypeDefinition typeDefinitionType = GenericComponentDefinition(typeDefName, typeDefVersion, typeDefPackage,packageName, packageVersion, kevoreeFactory, containerRoot, typedefinedObject);
 
 
 
@@ -302,12 +302,22 @@ namespace Org.Kevoree.ModelGenerator
 
         
 
-        private TypeDefinition GenericComponentDefinition(string packageName, string packageVersion, KevoreeFactory kevoreeFactory, ContainerRoot containerRoot, Annotation.DeployUnit typedefinedObject)
+        private TypeDefinition GenericComponentDefinition(string typeDefName, string typeDefVersion, string typeDefPackage, string packageName, string packageVersion, KevoreeFactory kevoreeFactory, ContainerRoot containerRoot, Annotation.DeployUnit typedefinedObject)
         {
-            log.Info(string.Format("Class {0} found", typedefinedObject.ToString()));
 
             /* création de la deployUnit */
 
+            org.kevoree.DeployUnit du = DeployUnitInit(packageName, packageVersion, kevoreeFactory);
+
+            /* chargement des informations génériques à toutes les type defition */
+            var typeDef = initTypeDefAndPackage(typeDefName, typeDefVersion, typeDefPackage, du, containerRoot, kevoreeFactory, typedefinedObject);
+            typeDef.setAbstract(java.lang.Boolean.FALSE);
+            typeDef.addDeployUnits(du);
+            return typeDef;
+        }
+
+        private static org.kevoree.DeployUnit DeployUnitInit(string packageName, string packageVersion, KevoreeFactory kevoreeFactory)
+        {
             org.kevoree.DeployUnit du = kevoreeFactory.createDeployUnit();
             var platform = kevoreeFactory.createValue();
             platform.setName("platform");
@@ -318,25 +328,14 @@ namespace Org.Kevoree.ModelGenerator
             // on garde le même nom et le même numéro de version que ceux du nuget
             du.setName(packageName);
             du.setVersion(packageVersion);
-
-            var typeDefinitionType = annotationHelper.GetTypeDefinition(typedefinedObject.GetType(), EXPECTED_TYPES);
-
-            /* chargement des informations génériques à toutes les type defition */
-            var typeDef = initTypeDefAndPackage(typedefinedObject.GetType().FullName, du, containerRoot, kevoreeFactory, getModelTypeName(typeDefinitionType));
-            typeDef.setAbstract(java.lang.Boolean.FALSE); // TODO : dans un premier temps on ne gere pas l'héritage
-            typeDef.addDeployUnits(du);
-            return typeDef;
+            return du;
         }
 
-        private TypeDefinition initTypeDefAndPackage(String name, org.kevoree.DeployUnit du, ContainerRoot root, KevoreeFactory factory, String typeName)
+        private TypeDefinition initTypeDefAndPackage(string typeDefName, string typeDefVersion, string typeDefPackage, org.kevoree.DeployUnit du, ContainerRoot root, KevoreeFactory factory, Annotation.DeployUnit typedefinedObject)
         {
-            String[] packages = Regex.Split(name, "\\.");
-            if (packages.Length <= 1)
-            {
-                throw new java.lang.RuntimeException("Component '" + name + "' must be defined in a Java package");
-            }
+            string[] packages = Regex.Split(typeDefPackage, "\\.");
             org.kevoree.Package pack = null;
-            for (int i = 0; i < packages.Length - 1; i++)
+            for (int i = 0; i < packages.Length; i++)
             {
                 if (pack == null)
                 {
@@ -358,17 +357,18 @@ namespace Org.Kevoree.ModelGenerator
                     pack = packNew;
                 }
             }
-            String tdName = packages[packages.Length - 1];
-            TypeDefinition foundTD = pack.findTypeDefinitionsByNameVersion(tdName, du.getVersion());
+            string tdName = packages[packages.Length - 1];
+            TypeDefinition foundTD = pack.findTypeDefinitionsByNameVersion(typeDefName, typeDefVersion);
             if (foundTD != null)
             {
                 return foundTD;
             }
             else
             {
-                TypeDefinition td = (TypeDefinition)factory.create(typeName);
-                td.setVersion(du.getVersion());
-                td.setName(tdName);
+                var typeDefinitionType = annotationHelper.GetTypeDefinition(typedefinedObject.GetType(), EXPECTED_TYPES);
+                TypeDefinition td = (TypeDefinition)factory.create(getModelTypeName(typeDefinitionType));
+                td.setVersion(typeDefVersion);
+                td.setName(typeDefName);
                 td.addDeployUnits(du);
                 pack.addTypeDefinitions(td);
                 pack.addDeployUnits(du);

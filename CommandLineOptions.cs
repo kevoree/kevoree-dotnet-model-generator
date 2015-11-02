@@ -11,6 +11,15 @@ namespace Org.Kevoree.ModelGenerator
         [Option("package.version", Required = true, HelpText = "Nuget package version (format = X.Y.Z).")]
         public string PackageVersion { get; set; }
 
+        [Option("typeDef.name", Required = true, HelpText = "TypeDefinition name.")]
+        public string TypeDefName { get; set; }
+
+        [Option("typeDef.version", Required = true, HelpText = "Type definition version (format = X.Y.Z).")]
+        public string TypeDefVersion { get; set; }
+
+        [Option("typeDef.package", Required = true, HelpText = "Type definition package.")]
+        public string TypeDefPackage { get; set; }
+
         [Option("nuget.local.repository.path", Required = false, HelpText = "Nuget local repository.")]
         public string NugetLocalRepositoryPath { get; set; }
 
