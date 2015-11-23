@@ -55,7 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Core.Api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\org-kevoree-api.1.6.0\lib\net40\Core.Api.dll</HintPath>
+      <HintPath>packages\org-kevoree-api.1.7.0\lib\net40\Core.Api.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="IKVM.AWT.WinForms, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
@@ -159,7 +159,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="kevoree-dotnet-core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kecoree.Core.1.3.0\lib\net40\kevoree-dotnet-core.dll</HintPath>
+      <HintPath>packages\Org.Kecoree.Core.1.3.1\lib\net40\kevoree-dotnet-core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="kevoree-dotnet-lib-annotation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -171,7 +171,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="kevoree-dotnet-nuget-loader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kevoree.Nuget.Loader.1.1.0\lib\net40\kevoree-dotnet-nuget-loader.dll</HintPath>
+      <HintPath>packages\Org.Kevoree.Nuget.Loader.1.3.0\lib\net40\kevoree-dotnet-nuget-loader.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="kevoree-dotnet-registry-client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -180,6 +180,10 @@
     </Reference>
     <Reference Include="KevoreeModel, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Org.Kevoree.Core.Model.5.2.9\lib\KevoreeModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="KevScript, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Org.Kevoree.Core.KevScript.5.2.23\lib\KevScript.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Log, Version=1.0.5781.19940, Culture=neutral, processorArchitecture=MSIL">
@@ -196,10 +200,6 @@
     </Reference>
     <Reference Include="NuGet.Core, Version=2.9.0.729, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\NuGet.Core.2.9.0\lib\net40-Client\NuGet.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="org.kevoree.kevscript-5.2.9-SNAPSHOT-jar-with-dependencies, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kevoree.Core.KevScript.5.2.21\lib\org.kevoree.kevscript-5.2.9-SNAPSHOT-jar-with-dependencies.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Registration;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -21,11 +22,16 @@ namespace Org.Kevoree.ModelGenerator
     public class Runner : MarshalByRefObject, IRunner
     {
         private DirectoryCatalog directoryCatalog;
-        private IEnumerable<Org.Kevoree.Annotation.DeployUnit> exports;
-        private CompositionContainer container;
+
+        [ImportMany(typeof(Org.Kevoree.Annotation.DeployUnit))]
+        private HashSet<Org.Kevoree.Annotation.DeployUnit> exports;
+        private CompositionContainer _container;
         private readonly AnnotationHelper annotationHelper = new AnnotationHelper();
 
         private ILogger log = new LoggerMaster(Log.Api.Level.Debug, "ModelGenerator");
+
+        private string packageName;
+        private string packageVersion;
 
         private readonly Type[] EXPECTED_TYPES = {
 			typeof(Org.Kevoree.Annotation.ComponentType),
@@ -39,22 +45,27 @@ namespace Org.Kevoree.ModelGenerator
             this.pluginPath = pluginPath;
         }
 
+        public void setPackageName(string packageName)
+        {
+            this.packageName = packageName;
+        }
+
+        public void setPackageVersion(string packageVersion)
+        {
+            this.packageVersion = packageVersion;
+        }
+
         private void Init()
         {
             // Use RegistrationBuilder to set up our MEF parts.
-            var regBuilder = new RegistrationBuilder();
-            regBuilder.ForTypesDerivedFrom<Org.Kevoree.Annotation.DeployUnit>().Export<Org.Kevoree.Annotation.DeployUnit>();
+            //var targetPath = Path.Combine(this.pluginPath, packageName + "." + packageVersion);
+            var targetPath = this.pluginPath;
+            var plugDir = new FileInfo(targetPath).Directory;
+            var catalogs = plugDir.GetDirectories("*", SearchOption.AllDirectories).Select(x => new DirectoryCatalog(x.FullName));
+            var directoryAggregate = new AggregateCatalog(catalogs);
+            _container = new CompositionContainer(directoryAggregate);
+            _container.ComposeParts(this);
 
-            var catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(Runner).Assembly, regBuilder));
-            directoryCatalog = new DirectoryCatalog(pluginPath, regBuilder);
-            catalog.Catalogs.Add(directoryCatalog);
-
-            container = new CompositionContainer(catalog);
-            container.ComposeExportedValue(container);
-
-            // Get our exports available to the rest of Program.
-            exports = container.GetExportedValues<Org.Kevoree.Annotation.DeployUnit>();
         }
 
         internal void AnalyseAndPublish(string typeDefName, string typeDefVersion, string typeDefPackage, string packageName, string packageVersion, string kevoreeRegistryUrl)
@@ -89,7 +100,7 @@ namespace Org.Kevoree.ModelGenerator
         {
             KevoreeFactory kevoreeFactory = new DefaultKevoreeFactory();
             ContainerRoot containerRoot = null;
-            
+
 
             var filteredAssemblyTypes = exports.Where((x) => annotationHelper.FilterByAttribute(x.GetType(), EXPECTED_TYPES)).ToList();
             if (filteredAssemblyTypes.Count() == 0)
@@ -105,7 +116,7 @@ namespace Org.Kevoree.ModelGenerator
                  * Initialisation a type definition (container root) with information common to all the components types.
                  */
                 var typedefinedObject = filteredAssemblyTypes[0];
-                TypeDefinition typeDefinitionType = GenericComponentDefinition(typeDefName, typeDefVersion, typeDefPackage,packageName, packageVersion, kevoreeFactory, containerRoot, typedefinedObject);
+                TypeDefinition typeDefinitionType = GenericComponentDefinition(typeDefName, typeDefVersion, typeDefPackage, packageName, packageVersion, kevoreeFactory, containerRoot, typedefinedObject);
 
 
 
@@ -310,7 +321,7 @@ namespace Org.Kevoree.ModelGenerator
             return dataType;
         }
 
-        
+
 
         private TypeDefinition GenericComponentDefinition(string typeDefName, string typeDefVersion, string typeDefPackage, string packageName, string packageVersion, KevoreeFactory kevoreeFactory, ContainerRoot containerRoot, Annotation.DeployUnit typedefinedObject)
         {
