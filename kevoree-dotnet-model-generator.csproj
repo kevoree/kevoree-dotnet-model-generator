@@ -8,8 +8,6 @@
     <RootNamespace>Org.Kevoree.ModelGenerator</RootNamespace>
     <AssemblyName>kevoree-dotnet-model-generator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <PublishUrl>publier\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -50,156 +48,12 @@
       <HintPath>packages\org-kevoree-annotation.2.0.6\lib\net40\Annotation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
-      <HintPath>packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Core.Api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\org-kevoree-api.1.7.0\lib\net40\Core.Api.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="IKVM.AWT.WinForms, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.AWT.WinForms.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Beans, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Beans.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Charsets, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Charsets.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Corba, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Corba.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Core, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Jdbc, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Jdbc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Management, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Management.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Media, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Media.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Misc, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Misc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Naming, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Naming.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Remoting, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Remoting.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Security, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Security.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.SwingAWT, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.SwingAWT.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Text, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Text.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Tools, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Tools.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.Util, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Util.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.API, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.API.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Bind, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.Bind.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Crypto, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Parse, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.Parse.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.Transform, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.Transform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.WebServices, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.OpenJDK.XML.XPath, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.XPath.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.Runtime, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.Runtime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IKVM.Runtime.JNI, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
-      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.Runtime.JNI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="kevoree-dotnet-core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kecoree.Core.1.3.1\lib\net40\kevoree-dotnet-core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="kevoree-dotnet-lib-annotation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kevoree.Lib.Annnotation.1.0.0\lib\net40\kevoree-dotnet-lib-annotation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="kevoree-dotnet-log-api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kevoree.Log.Api.1.0.0\lib\net40\kevoree-dotnet-log-api.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="kevoree-dotnet-nuget-loader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kevoree.Nuget.Loader.1.3.0\lib\net40\kevoree-dotnet-nuget-loader.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="kevoree-dotnet-registry-client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kevoree.Nuget.CLient.1.0.0\lib\net40\kevoree-dotnet-registry-client.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="KevoreeModel, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kevoree.Core.Model.5.2.9\lib\KevoreeModel.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="KevScript, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Org.Kevoree.Core.KevScript.5.2.23\lib\KevScript.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Log, Version=1.0.5781.19940, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\org-kevoree-log.1.2.0\lib\net45\Log.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Web.XmlTransform, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Web.Xdt.2.1.1\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NuGet.Core, Version=2.9.0.729, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\NuGet.Core.2.9.0\lib\net40-Client\NuGet.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -209,12 +63,119 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.Composition.Registration" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Reflection.Context" />
     <Reference Include="System.Xml" />
+    <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32">
+      <HintPath>packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.AWT.WinForms, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.AWT.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Beans, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Beans.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Charsets, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Charsets.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Corba, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Corba.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Jdbc, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Jdbc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Management, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Media, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Misc, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Misc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Naming, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Naming.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Remoting, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Remoting.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Security, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.SwingAWT, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.SwingAWT.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Text, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Tools, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.API, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.API.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Bind, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.Bind.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Crypto, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Parse, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Transform, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.Transform.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.WebServices, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.XPath, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.OpenJDK.XML.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime.JNI, Version=7.2.4630.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
+      <HintPath>packages\IKVM.7.2.4630.5\lib\IKVM.Runtime.JNI.dll</HintPath>
+    </Reference>
+    <Reference Include="kevoree-dotnet-core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Org.Kecoree.Core.1.3.1\lib\net40\kevoree-dotnet-core.dll</HintPath>
+    </Reference>
+    <Reference Include="kevoree-dotnet-lib-annotation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Org.Kevoree.Lib.Annnotation.1.0.0\lib\net40\kevoree-dotnet-lib-annotation.dll</HintPath>
+    </Reference>
+    <Reference Include="kevoree-dotnet-log-api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Org.Kevoree.Log.Api.1.0.0\lib\net40\kevoree-dotnet-log-api.dll</HintPath>
+    </Reference>
+    <Reference Include="kevoree-dotnet-registry-client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Org.Kevoree.Nuget.CLient.1.0.0\lib\net40\kevoree-dotnet-registry-client.dll</HintPath>
+    </Reference>
+    <Reference Include="KevoreeModel, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Org.Kevoree.Core.Model.5.2.9\lib\KevoreeModel.dll</HintPath>
+    </Reference>
+    <Reference Include="KevScript, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>packages\Org.Kevoree.Core.KevScript.5.2.23\lib\KevScript.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.XmlTransform, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>packages\Microsoft.Web.Xdt.2.1.1\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core, Version=2.9.0.729, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>packages\NuGet.Core.2.9.0\lib\net40-Client\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="kevoree-dotnet-nuget-loader">
+      <HintPath>packages\Org.Kevoree.Nuget.Loader.1.1.0\lib\net40\kevoree-dotnet-nuget-loader.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineOptions.cs" />
@@ -227,12 +188,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\kevoree-dotnet-annotation\Annotation.csproj">
-      <Project>{ad3c2f49-5c3b-46d3-a283-600fe11a0aa1}</Project>
-      <Name>Annotation</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
