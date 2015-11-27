@@ -23,11 +23,11 @@ namespace Org.Kevoree.ModelGenerator
         [Option("nuget.local.repository.path", Required = false, HelpText = "Nuget local repository.")]
         public string NugetLocalRepositoryPath { get; set; }
 
-        [Option("nuget.repository.url", DefaultValue = "https://packages.nuget.org/api/v2", Required = false, HelpText = "Nuget remote repository.")]
+		[Option("nuget.repository.url", DefaultValue = "https://packages.nuget.org/api/v2", Required = false, HelpText = "Nuget remote repository.")]
         public string NugetRepositoryUrl { get; set; }
 
-        [Option("kevoree.registry.url", DefaultValue = "http://registry.kevoree.org", Required = false, HelpText = "Kevoree remote registry.")]
-        public string KevoreeRegistryUrl { get; set; }
+		[Option("output.path", DefaultValue = "http://registry.kevoree.org", Required = true, HelpText = "Defines where the model will be published. If the value can be parsed as an url it will be used as a remote http registry. If the value can be parsed as a filesystem path it will be used as a file path in where to save the model.")]
+		public string OutputPath { get; set; }
 
         [ParserState]
         public IParserState LastParserState { get; set; }

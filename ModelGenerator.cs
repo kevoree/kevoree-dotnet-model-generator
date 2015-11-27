@@ -20,7 +20,7 @@ namespace Org.Kevoree.ModelGenerator
                 {
                     try
                     {
-                        componentloaded.AnalyseAndPublish(options.TypeDefName, options.TypeDefVersion, options.TypeDefPackage, options.PackageName, options.PackageVersion, options.KevoreeRegistryUrl);
+						componentloaded.AnalyseAndPublish(options.TypeDefName, options.TypeDefVersion, options.TypeDefPackage, options.PackageName, options.PackageVersion, options.OutputPath);
                     }
                     catch (Exception e)
                     {

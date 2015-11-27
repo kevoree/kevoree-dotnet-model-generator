@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-//using System.ComponentModel.Composition.Registration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -68,7 +67,7 @@ namespace Org.Kevoree.ModelGenerator
 
         }
 
-        internal void AnalyseAndPublish(string typeDefName, string typeDefVersion, string typeDefPackage, string packageName, string packageVersion, string kevoreeRegistryUrl)
+        internal void AnalyseAndPublish(string typeDefName, string typeDefVersion, string typeDefPackage, string packageName, string packageVersion, string outputPath)
         {
             this.Init();
 
@@ -76,9 +75,22 @@ namespace Org.Kevoree.ModelGenerator
 
             if (result != null)
             {
-                debug(result);
+                //debug(result);
 
-                new RegistryClient(kevoreeRegistryUrl).publishContainerRoot(result).Wait();
+
+				var kevoreeRegistryUrl = parseToUrl (outputPath);
+				if (kevoreeRegistryUrl != null) {
+					new RegistryClient (kevoreeRegistryUrl.ToString()).publishContainerRoot (result).Wait ();
+				} else {
+					// trying to handle the outPath as a file path and then handling error if it fails.
+					try {
+						var saver = new org.kevoree.pmodeling.api.json.JSONModelSerializer();
+						string json = saver.serialize(result);
+						System.IO.File.WriteAllText(outputPath, json);
+					} catch(System.UnauthorizedAccessException) {
+						Console.WriteLine ("Invalid output path");
+					}
+				}
             }
             else
             {
@@ -86,15 +98,26 @@ namespace Org.Kevoree.ModelGenerator
             }
 
         }
+			
 
-        private static void debug(ContainerRoot result)
+		Uri parseToUrl (string uriName)
+		{
+			Uri uriResult;
+			if (Uri.TryCreate (uriName, UriKind.Absolute, out uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps)) {
+				return uriResult;
+			} else {
+				return null;
+			}
+		}
+
+        /*private static void debug(ContainerRoot result)
         {
             var fact = new DefaultKevoreeFactory();
             var serializer = fact.createJSONSerializer();
             var modelStr = serializer.serialize(result);
 
             Console.WriteLine(modelStr);
-        }
+        }*/
 
         private ContainerRoot Analyse(string typeDefName, string typeDefVersion, string typeDefPackage, string packageName, string packageVersion)
         {
