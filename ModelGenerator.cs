@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
 namespace Org.Kevoree.ModelGenerator
 {
@@ -24,7 +23,7 @@ namespace Org.Kevoree.ModelGenerator
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Error while send the model :\n" + e.ToString());
+                        Console.WriteLine("Error while send the model :\n" + e);
                     }
                 }
                 else {
