@@ -1,4 +1,4 @@
-before build:
+before_build:
   - cmd: nuget restore
 
 build:
