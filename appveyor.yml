@@ -1,5 +1,5 @@
 before build:
-  - nuget restore
+  - cmd: nuget restore
 
 build:
   project: kevoree-dotnet-model-generator.sln
